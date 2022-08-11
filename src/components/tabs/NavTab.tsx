@@ -1,11 +1,12 @@
 import * as React from 'react'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 
+/**
+ * @description this component handles click event on nav bar tabs
+ * @returns JSX Elements
+ */
 export default function NavTabs() {
   const [isJourneyTabClicked, setIsJourneyTabClicked] = React.useState(false)
   const [isStationTabClicked, setIsStationTabClicked] = React.useState(false)
