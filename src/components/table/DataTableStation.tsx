@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from '@mui/material'
 import React from 'react'
 import DataTable, { TableColumn } from 'react-data-table-component'
+import { Link } from 'react-router-dom'
 import { tempStationListData } from '../../data/station.data'
 
 // types of data (row)
@@ -44,15 +45,19 @@ const columns: TableColumn<DataRow>[] = [
   },
   {
     name: 'Action',
-    cell: () => {
-      return <Button variant='contained'>View</Button>
+    cell: (row) => {
+      return (
+        <Link to={`/stationlist/${row.station_id}`}>
+          <Button variant='contained'>View</Button>
+        </Link>
+      )
     },
   },
 ]
 
 const [hslData] = tempStationListData.map((item) => item.data?.hslData)
 
-// data (rows) of the table
+// data (rows) of the station list table
 const DataTableStationList = (): JSX.Element => {
   const [filterText, setFilterText] = React.useState('')
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
