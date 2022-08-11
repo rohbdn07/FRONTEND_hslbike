@@ -4,6 +4,9 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
+import { Tab, Tabs } from '@mui/material'
+import NavTabs from '../tabs/NavTab'
 
 const pages = ['Journey', 'Stations']
 
@@ -38,27 +41,7 @@ const MenuBar = (): JSX.Element => {
           >
             HSL CITY BIKE
           </Typography>
-
-          <Typography
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              position: 'absolute',
-              right: '0',
-            }}
-          >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                sx={{
-                  color: 'white',
-                  display: 'block',
-                  letterSpacing: '.1rem',
-                }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Typography>
+          <NavTabs />
         </Box>
       </Container>
     </AppBar>
