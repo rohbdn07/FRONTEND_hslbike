@@ -1,19 +1,20 @@
 import React from 'react'
 import './App.css'
 import MenuBar from './components/navbar/Menubar'
-import DataTableList from './components/table/DataTable'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes'
 
 function App() {
   return (
     <>
-      <div className='App'>
-        <div className='MenuBar'>
-          <MenuBar />
+      <BrowserRouter>
+        <div className='App'>
+          <div className='MenuBar'>
+            <MenuBar />
+          </div>
+          <AppRoutes />
         </div>
-        <div className='DataTable'>
-          <DataTableList />
-        </div>
-      </div>
+      </BrowserRouter>
     </>
   )
 }
