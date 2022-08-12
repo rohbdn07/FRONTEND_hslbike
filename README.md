@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Helsinki City Bike App (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+This is a front-end part of a full-stack project called 'Helsinki City Bike Dashboard application'. \
+This is under-construction, haven't fully completed yet. But ready to run. \
+In order to see response (data) in the screen, first, you have to run its Backend repo.\
+Repo: https://github.com/rohbdn07/hsl-city-bike-app-BACKEND.git \
+Visit backend repo for detailed information on how to run backend.
 
 ## Available Scripts
 
