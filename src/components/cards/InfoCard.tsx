@@ -30,7 +30,7 @@ const InfoCard = (card: InfoCardProps) => {
     >
       <Paper elevation={6}>
         <p style={{ fontSize: '15px', fontWeight: 'bold' }}>{card.text}</p>
-        <p style={{ fontSize: '30px', color: '#0a0908' }}>{card.value}</p>
+        <p style={{ fontSize: '30px', color: '#0a0908' }}>{card.value ? card.value : '-'}</p>
       </Paper>
     </Box>
   )
