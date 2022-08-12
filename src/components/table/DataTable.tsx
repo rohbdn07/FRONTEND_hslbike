@@ -1,7 +1,6 @@
 import { Box, TextField } from '@mui/material'
 import React from 'react'
 import DataTable, { TableColumn } from 'react-data-table-component'
-import { tempData } from '../../data/data'
 
 // types of data (row)
 type DataRow = {
@@ -13,13 +12,6 @@ type DataRow = {
 
 // headers of table
 const columns: TableColumn<DataRow>[] = [
-  {
-    name: 'Month',
-    cell: () => {
-      const [month] = tempData.map((item) => item.data.monthName)
-      return month
-    },
-  },
   {
     name: 'Departure station',
     selector: (row) => row.departure_station_name,
@@ -40,27 +32,21 @@ const columns: TableColumn<DataRow>[] = [
   },
 ]
 
-const [hslData] = tempData.map((item) => item.data?.hslData)
-
 // data (rows) of the table
-const DataTableList = (): JSX.Element => {
+const DataTableList = ({ data }: any): JSX.Element => {
   const [filterText, setFilterText] = React.useState('')
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
 
-  const filteredItems = hslData.filter(
-    (item) =>
-      item.departure_station_name &&
-      item.departure_station_name.toLowerCase().includes(filterText.toLowerCase()),
-  )
+  // console.log('the data of journey list is', data)
+  const filteredItems =
+    data &&
+    data?.data?.hslData?.filter(
+      (item: any) =>
+        item.departure_station_name &&
+        item.departure_station_name.toLowerCase().includes(filterText.toLowerCase()),
+    )
 
   const subHeaderFilterComponentMemo: JSX.Element = React.useMemo(() => {
-    // const handleClear = () => {
-    //   if (filterText) {
-    //     setResetPaginationToggle(!resetPaginationToggle)
-    //     setFilterText('')
-    //   }
-    // }
-
     return (
       <Box
         component='form'
@@ -84,14 +70,13 @@ const DataTableList = (): JSX.Element => {
 
   return (
     <DataTable
-      title='Journey Lists'
+      title={data && `Month: ${data?.data?.monthName}`}
       columns={columns}
       data={filteredItems}
       pagination
       paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
       subHeader
       subHeaderComponent={subHeaderFilterComponentMemo}
-      selectableRows
       persistTableHead
       fixedHeader
       fixedHeaderScrollHeight='700px'
