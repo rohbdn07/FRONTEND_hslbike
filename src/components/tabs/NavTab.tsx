@@ -40,7 +40,7 @@ export default function NavTabs() {
               color: 'white',
               display: 'block',
               letterSpacing: '.1rem',
-              backgroundColor: isJourneyTabClicked ? 'green' : 'none',
+              backgroundColor: isJourneyTabClicked ? '#003049' : 'none',
             }}
             onClick={(e) => onClickButton(e)}
             value={'journey'}
@@ -53,7 +53,7 @@ export default function NavTabs() {
             sx={{
               color: 'white',
               display: 'block',
-              backgroundColor: isStationTabClicked ? 'green' : 'none',
+              backgroundColor: isStationTabClicked ? '#003049' : 'none',
             }}
             onClick={(e) => onClickButton(e)}
             value={'station'}
