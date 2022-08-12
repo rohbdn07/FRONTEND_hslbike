@@ -30,7 +30,8 @@ interface IStationDataById {
 }
 
 const Item = styled(Paper)(() => ({
-  backgroundColor: '#003049',
+  // backgroundColor: 'rgb(25 118 210)',
+  backgroundColor: 'rgb(25 118 180)',
   padding: '10px',
   textAlign: 'center',
   color: 'black',
@@ -44,30 +45,30 @@ const Item = styled(Paper)(() => ({
  */
 const StationByIdPage = () => {
   const [data, setData] = React.useState<IStationDataById>()
-  const [dataNotFound, setDataNotFound] = React.useState<string>('')
-
+  const [dataNotFound, setDataNotFound] = React.useState<null>(null)
   const { id } = useParams()
 
-  React.useEffect(() => {
-    async function callApi() {
-      const response = await axiosServices.getStationInfoById(id as string)
-      const data = response.data
-
-      if (data !== undefined && data.success) {
+  // call axios services to fetch data
+  const callApi = async (id: string, value: string) => {
+    try {
+      const response = await axiosServices.getStationInfoById(id, value as string)
+      const data = await response.data
+      if (data.success === true) {
         setData(data)
+        setDataNotFound(null)
       } else if (data.success === false) {
-        setDataNotFound(`${data.message}`)
+        setDataNotFound(data.message)
       }
+    } catch (error) {
+      console.log('Error while fetching..', error)
     }
-    callApi()
-  }, [])
-
-  console.log('the data is', data)
+  }
 
   return (
     <>
-      <Header />
-      <Box sx={{ flexGrow: 1, marginTop: '5px' }}>
+      <Box sx={{ flexGrow: 1, marginTop: '5px', width: '80%', margin: '0 auto' }}>
+        <Header header={'Station Travel Information'} id={id as string} fetchAPIFn={callApi} />
+
         <Grid container spacing={3}>
           <Grid item xs={4} md={3}>
             <Item>
@@ -87,7 +88,7 @@ const StationByIdPage = () => {
                 <p>{data?.data.month}</p>
               </Paper>
 
-              {dataNotFound ? (
+              {dataNotFound !== null ? (
                 <Box sx={{ fontSize: '20px', color: 'white', marginTop: '20px' }}>
                   {dataNotFound}
                 </Box>
@@ -102,13 +103,14 @@ const StationByIdPage = () => {
                     }}
                   >
                     <InfoCard
-                      text='Total no.of journey (starting)'
+                      text='Total no. of journey (starting)'
                       value={data?.data.totalJourneyStarting}
                     />
                     <InfoCard
-                      text='Total no.of journey (ending)'
+                      text='Total no. of journey (ending)'
                       value={data?.data.totalJourneyEnding}
                     />
+                    <InfoCard text='Total no. of Journey' value={data?.data.totalJourney} />
                   </Box>
                   <Box
                     sx={{
@@ -119,7 +121,7 @@ const StationByIdPage = () => {
                     }}
                   >
                     <InfoCard
-                      text='Average distance (staring) in Km'
+                      text='Average distance (starting) in Km'
                       value={data?.data.avgDistanceStarting_KM}
                     />
                     <InfoCard
