@@ -4,7 +4,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
  * @baseurl "http://localhost:5050"
  */
 
-const axiosFetchStationInfoByIdAPI: AxiosInstance & AxiosRequestConfig = axios.create({
+const axiosFetchAPI: AxiosInstance & AxiosRequestConfig = axios.create({
   // baseURL: 'http://localhost:5050',
   baseURL: process.env.REACT_APP_HOST || 'http://localhost:5050',
   headers: {
@@ -13,12 +13,26 @@ const axiosFetchStationInfoByIdAPI: AxiosInstance & AxiosRequestConfig = axios.c
 })
 
 // call an api endpoint and return response
-const getStationInfoById = async (id: string) => {
-  const response = await axiosFetchStationInfoByIdAPI.get(`/api/hslcitybike/stationsinfo/${id}/may`)
+const getStationInfoById = async (id: string, value: string) => {
+  const response = await axiosFetchAPI.get(`/api/hslcitybike/stationsinfo/${id}/${value}`)
+  return response
+}
+
+// call an api endpoint and return response
+const getAllStationList = async () => {
+  const response = await axiosFetchAPI.get('/api/hslcitybike/stationslists')
+  return response
+}
+
+// call an api endpoint and return response
+const getAllJourneyList = async (value: string) => {
+  const response = await axiosFetchAPI.get(`/api/hslcitybike/journeylist/month/${value}`)
   return response
 }
 
 export default {
-  axiosFetchStationInfoByIdAPI,
+  axiosFetchAPI,
   getStationInfoById,
+  getAllStationList,
+  getAllJourneyList,
 }
