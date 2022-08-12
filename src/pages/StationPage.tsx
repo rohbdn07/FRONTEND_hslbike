@@ -1,11 +1,39 @@
 import React from 'react'
 import DataTableStationList from '../components/table/DataTableStation'
+import axiosServices from '../services/axios'
 
-const StationPage = () => {
+interface IStationInfo {
+  id: string
+  station_id: number
+  kaupunki: string
+  address: string
+  name: string
+  operaattor: string
+  kapasiteet: number
+}
+
+interface IStationLists {
+  success: boolean
+  message: string
+  data: IStationInfo
+}
+
+// fetch all list of stations, passed it into another component and display on the screen
+const StationPage = (): JSX.Element => {
+  const [data, setData] = React.useState<IStationLists>()
+
+  React.useState(() => {
+    const callApi = async () => {
+      const response = await axiosServices.getAllStationList()
+      setData(response.data)
+    }
+    callApi()
+  })
+
   return (
     <>
       <div className='DataTable'>
-        <DataTableStationList />
+        <DataTableStationList data={data} />
       </div>
     </>
   )
