@@ -1,11 +1,34 @@
 # Helsinki City Bike App (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
-This is a front-end part of a full-stack project called 'Helsinki City Bike Dashboard application'. \
-This is under-construction, haven't fully completed yet. But ready to run. \
-In order to see response (data) in the screen, first, you have to run its Backend repo.\
-Repo: https://github.com/rohbdn07/hsl-city-bike-app-BACKEND.git \
+This is a Front-end part of a Full-stack project called 'Helsinki City Bike application'. \
+This project contains UI sections and display travel information.
+In order to see response (data) in the screen, first, you have to run its Backend repository.\
+Repo for backend: https://github.com/rohbdn07/hsl-city-bike-app-BACKEND.git \
 Visit backend repo for detailed information on how to run backend.
+
+Front-end Images:
+
+- Journey list of information
+
+![journeylist_screenshot01](https://user-images.githubusercontent.com/57314666/184538789-2e90091c-1ffb-417e-ab23-15ff0fde021a.png)
+
+- Station list of information
+
+![stationlist_screenshot02](https://user-images.githubusercontent.com/57314666/184538842-a1ecccb2-63fe-419c-8976-13b447b4ec52.png)
+
+- Station information by its ID
+
+![stationinfoByid_screenshot03](https://user-images.githubusercontent.com/57314666/184538894-0a9f4509-88ad-4945-815a-8fa3053e52aa.png)
+
+## Features
+
+- Frontend built in React.js with typescript.
+- Pagination.
+- Filter or Search.
+- View individual station information.
+- Eslint and prettier.
+
+After running backend repo, you can run this project with following steps.
 
 ## Available Scripts
 
@@ -19,8 +42,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+### `npm run lint:fix`
+
+It check eslint and fixed if required, according to given configuration on `.eslintrc.json` file. \
+For more information, Visit : `https://typescript-eslint.io/`
+
 ### `npm test`
 
+No test cases are added for this project at this time of writing. \
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
