@@ -26,9 +26,53 @@ Front-end Images:
 - Pagination.
 - Filter or Search.
 - View individual station information.
+- Get information list according to month.
 - Eslint and prettier.
 
+## Prerequisites
+
+To build and run this app locally you MUST need a few things:
+
+- Install [Node.js](https://nodejs.org/en/)
+- Install [VS Code](https://code.visualstudio.com/)
+
 After running backend repo, you can run this project with following steps.
+
+## Getting Started
+
+To get started you must follow following steps one after another:
+
+1. Clone this repository
+2. Install npm into your local VSCode by `npm install`.
+3. Create `.env` file at the root of the project.
+4. Put all the required env variables into .env file.
+
+   Then, RUN this project with : `npm start` \
+   Follow below for available scripts.
+
+### 1) Git Clone
+
+```bash
+# Get the latest snapshot
+git clone https://github.com/rohbdn07/hsl_citybike_FRONTEND.git
+
+# Change into root directory
+cd frontend_hslbike
+
+```
+
+### 2) Npm install
+
+`npm install`
+
+### 3 & 4) Put environment variables
+
+Create `.env` file at the root of the project. Put below env variables.
+
+```bash
+# required env variables
+REACT_APP_HOST= http://localhost:5050
+```
 
 ## Available Scripts
 
