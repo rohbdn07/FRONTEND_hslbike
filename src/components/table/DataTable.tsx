@@ -34,17 +34,13 @@ const columns: TableColumn<DataRow>[] = [
 
 // data (rows) of the table
 const DataTableList = ({ data }: any): JSX.Element => {
-  const [filterText, setFilterText] = React.useState('')
-  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
+  const [filterText, setFilterText] = React.useState<string>('')
+  const [resetPaginationToggle, setResetPaginationToggle] = React.useState<boolean>(false)
 
-  // console.log('the data of journey list is', data)
-  const filteredItems =
-    data &&
-    data?.data?.hslData?.filter(
-      (item: any) =>
-        item.departure_station_name &&
-        item.departure_station_name.toLowerCase().includes(filterText.toLowerCase()),
-    )
+  // filter data according to search
+  const filteredItems = data?.data?.hslData?.filter((item: any) => {
+    return item.departure_station_name.toLowerCase().includes(filterText.toLowerCase())
+  })
 
   const subHeaderFilterComponentMemo: JSX.Element = React.useMemo(() => {
     return (
