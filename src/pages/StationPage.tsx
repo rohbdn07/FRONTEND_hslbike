@@ -22,13 +22,13 @@ interface IStationLists {
 const StationPage = (): JSX.Element => {
   const [data, setData] = React.useState<IStationLists>()
 
-  React.useState(() => {
+  React.useEffect(() => {
     const callApi = async () => {
       const response = await axiosServices.getAllStationList()
       setData(response.data)
     }
     callApi()
-  })
+  }, [])
 
   return (
     <>
