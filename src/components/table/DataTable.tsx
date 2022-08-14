@@ -32,7 +32,11 @@ const columns: TableColumn<DataRow>[] = [
   },
 ]
 
-// data (rows) of the table
+/**
+ * @description this component display journey list with filtering features.
+ * @param data contains journey list informations
+ * @returns JSX.Element
+ */
 const DataTableList = ({ data }: any): JSX.Element => {
   const [filterText, setFilterText] = React.useState<string>('')
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState<boolean>(false)
