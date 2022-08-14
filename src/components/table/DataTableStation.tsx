@@ -54,7 +54,11 @@ const columns: TableColumn<DataRow>[] = [
   },
 ]
 
-// data (rows) of the station list table
+/**
+ * @description this component display station list with filtering features.
+ * @param data contains station list informations
+ * @returns JSX.Element
+ */
 const DataTableStationList = ({ data }: any): JSX.Element => {
   const [filterText, setFilterText] = React.useState('')
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
