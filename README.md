@@ -57,7 +57,7 @@ To get started you must follow following steps one after another:
 git clone https://github.com/rohbdn07/hsl_citybike_FRONTEND.git
 
 # Change into root directory
-cd frontend_hslbike
+cd hsl_citybike_FRONTEND
 
 ```
 
