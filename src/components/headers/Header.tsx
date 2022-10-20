@@ -3,9 +3,9 @@ import { Autocomplete, Box, TextField } from '@mui/material'
 import React from 'react'
 
 type HeaderProps = {
-  id?: string
+  selectedMonth: string
   header: string
-  fetchAPIFn: (id: string, value: string) => void
+  setSelectedMonth: (val: string) => void
 }
 
 const Container = styled(Box)(() => ({
@@ -21,28 +21,22 @@ const Container = styled(Box)(() => ({
   fontSize: '30px',
 }))
 
+const options = ['may', 'june', 'july']
+
 /**
  * @description this component display station information
  * @returns JSX Element
  */
-const Header = (props: HeaderProps) => {
-  const options = ['may', 'june', 'july']
-  const [value, setValue] = React.useState<string | null>(options[0])
-
-  // useEffect method calls callbackFunction.
-  React.useEffect(() => {
-    props.fetchAPIFn(props.id as string, value as string)
-  }, [value, props.id])
-
+const Header: React.FC<HeaderProps> = ({ header, selectedMonth, setSelectedMonth }) => {
   return (
     <Box sx={{ display: 'block', textAlign: 'center' }}>
       <Container>
-        <p>{props.header}</p>
+        <p>{header}</p>
         <Box sx={{ backgroundColor: 'white', marginLeft: '10px' }}>
           <Autocomplete
-            value={value}
-            onChange={(event: any, newValue: string | null) => {
-              setValue(newValue)
+            value={selectedMonth}
+            onChange={(_, newValue: string | null) => {
+              setSelectedMonth(newValue as string)
             }}
             id='controllable-states-demo'
             options={options}
