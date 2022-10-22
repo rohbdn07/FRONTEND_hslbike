@@ -1,18 +1,17 @@
-import { Box } from '@mui/material'
 import React from 'react'
 
 import Header from '../components/headers/Header'
 import DataTableList from '../components/table/DataTable'
-import { useCallApiHook } from '../hooks/useCallApiHook'
+import { useApiFetchByType } from '../hooks/useApiFetchByType'
 
 /**
  * @description this component display journey list of data
  * @returns JSX Element
  */
 const JourneyPage = () => {
-  // this custom hook call an api and return required states
-  const [data, dataNotFound, selectedMonth, setSelectedMonth] = useCallApiHook('journeyList')
-
+  // this custom hook calls an api and return required states
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [journeyData, _, error, selectedMonth, setSelectedMonth] = useApiFetchByType('journeyList')
   return (
     <>
       <div className='DataTable'>
@@ -21,14 +20,11 @@ const JourneyPage = () => {
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
-        {dataNotFound !== null ? (
-          <Box sx={{ fontSize: '20px', color: 'white', marginTop: '20px' }}>{dataNotFound}</Box>
-        ) : (
-          <DataTableList data={data} />
-        )}
+        <DataTableList data={journeyData} />
+        {error ? error : null}
       </div>
     </>
   )
 }
 
-export default JourneyPage
+export default React.memo(JourneyPage)
