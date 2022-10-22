@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
 import { Box, Grid, Paper } from '@mui/material'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 
 import InfoCard from '../components/cards/InfoCard'
 import StationCard from '../components/cards/StationCard'
 import Header from '../components/headers/Header'
-import { useCallApiHook } from '../hooks/useCallApiHook'
+import { useApiFetchByType } from '../hooks/useApiFetchByType'
+import { IStationDataById } from '../interfaces/types'
 
 const Item = styled(Paper)(() => ({
   // backgroundColor: 'rgb(25 118 210)',
@@ -16,7 +18,7 @@ const Item = styled(Paper)(() => ({
   height: '100%',
 }))
 
-const displayStationInformation = (data: any, dataNotFound: string) => {
+const displayStationInformation = (data: IStationDataById | undefined, error: string) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={4} md={3}>
@@ -36,48 +38,44 @@ const displayStationInformation = (data: any, dataNotFound: string) => {
             <h3>Month</h3>
             <p>{data?.data?.month}</p>
           </Paper>
-
-          {dataNotFound !== null ? (
-            <Box sx={{ fontSize: '20px', color: 'white', marginTop: '20px' }}>{dataNotFound}</Box>
-          ) : (
-            <>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <InfoCard
-                  text='Total no. of journey (starting)'
-                  value={data?.data?.totalJourneyStarting}
-                />
-                <InfoCard
-                  text='Total no. of journey (ending)'
-                  value={data?.data?.totalJourneyEnding}
-                />
-                <InfoCard text='Total no. of Journey' value={data?.data?.totalJourney} />
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <InfoCard
-                  text='Average distance (starting) in Km'
-                  value={data?.data?.avgDistanceStarting_KM}
-                />
-                <InfoCard
-                  text='Average distance (ending) in Km'
-                  value={data?.data?.avgDistanceEnding_KM}
-                />
-              </Box>
-            </>
-          )}
+          <>
+            {error ? error : null}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <InfoCard
+                text='Total no. of journey (starting)'
+                value={data?.data?.totalJourneyStarting}
+              />
+              <InfoCard
+                text='Total no. of journey (ending)'
+                value={data?.data?.totalJourneyEnding}
+              />
+              <InfoCard text='Total no. of Journey' value={data?.data?.totalJourney} />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <InfoCard
+                text='Average distance (starting) in Km'
+                value={data?.data?.avgDistanceStarting_KM}
+              />
+              <InfoCard
+                text='Average distance (ending) in Km'
+                value={data?.data?.avgDistanceEnding_KM}
+              />
+            </Box>
+          </>
         </Item>
       </Grid>
     </Grid>
@@ -93,10 +91,12 @@ const StationByIdPage = () => {
   const { id } = useParams() // id of station
 
   // this custom hook call an api and return required states
-  const [data, dataNotFound, selectedMonth, setSelectedMonth] = useCallApiHook(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, stationByIdData, error, selectedMonth, setSelectedMonth] = useApiFetchByType(
     'stationById',
     id as string,
   )
+  console.log('the error', error)
 
   return (
     <>
@@ -106,10 +106,10 @@ const StationByIdPage = () => {
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
-        {displayStationInformation(data, dataNotFound)}
+        {displayStationInformation(stationByIdData, error)}
       </Box>
     </>
   )
 }
 
-export default StationByIdPage
+export default React.memo(StationByIdPage)
