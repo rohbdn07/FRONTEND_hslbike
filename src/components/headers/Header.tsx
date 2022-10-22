@@ -39,6 +39,7 @@ const Header: React.FC<HeaderProps> = ({ header, selectedMonth, setSelectedMonth
               setSelectedMonth(newValue as string)
             }}
             id='controllable-states-demo'
+            data-testid='autocomplte'
             options={options}
             sx={{ width: 200 }}
             renderInput={(params) => <TextField {...params} label='Month' />}
