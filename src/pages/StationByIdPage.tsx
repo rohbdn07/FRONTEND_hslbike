@@ -10,18 +10,21 @@ import { useApiFetchByType } from '../hooks/useApiFetchByType'
 import { IStationDataById } from '../interfaces/types'
 
 const Item = styled(Paper)(() => ({
-  // backgroundColor: 'rgb(25 118 210)',
-  backgroundColor: 'rgb(25 118 180)',
+  backgroundColor: '#22577a',
   padding: '10px',
+  marginBottom: '10px',
   textAlign: 'center',
   color: 'black',
-  height: '100%',
+  minHeight: '250px',
+  position: 'relative',
+  // width: '250px',
+  // minWidth: 'inherit',
 }))
 
 const displayStationInformation = (data: IStationDataById | undefined, error: string) => {
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={4} md={3}>
+    <Grid container spacing={1}>
+      <Grid item xs={12} md={4} lg={4}>
         <Item>
           <StationCard
             id={data?.data?.stationId as number}
@@ -32,7 +35,7 @@ const displayStationInformation = (data: IStationDataById | undefined, error: st
           />
         </Item>
       </Grid>
-      <Grid item xs={8} md={9}>
+      <Grid item xs={12} md={8} lg={8}>
         <Item>
           <Paper variant='outlined'>
             <h3>Month</h3>
@@ -42,10 +45,10 @@ const displayStationInformation = (data: IStationDataById | undefined, error: st
             {error ? error : null}
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
+                display: 'inline-flex',
+                margin: '10px 0',
+                width: '100%',
+                gap: '5px',
               }}
             >
               <InfoCard
@@ -60,9 +63,8 @@ const displayStationInformation = (data: IStationDataById | undefined, error: st
             </Box>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                display: 'inline-flex',
+                width: '100%',
                 flexWrap: 'wrap',
               }}
             >
@@ -96,11 +98,10 @@ const StationByIdPage = () => {
     'stationById',
     id as string,
   )
-  console.log('the error', error)
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, marginTop: '5px', width: '80%', margin: '0 auto' }}>
+      <Box sx={{ marginTop: '5px', width: '80%', margin: '0 auto' }}>
         <Header
           header={'Station Travel Information'}
           selectedMonth={selectedMonth}
