@@ -1,5 +1,22 @@
+import styled from '@emotion/styled'
 import { Box, Paper } from '@mui/material'
 import React from 'react'
+
+const Container = styled(Box)(() => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  border: '1px solid black',
+  width: '100%',
+  margin: '5px 0',
+  '& > :not(style)': {
+    m: 1,
+    height: 160,
+    padding: '10px',
+    backgroundColor: '#ffffff',
+    color: 'black',
+    textAlign: 'center',
+  },
+}))
 
 type InfoCardProps = {
   text: string
@@ -13,26 +30,15 @@ type InfoCardProps = {
  */
 const InfoCard = (card: InfoCardProps) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > :not(style)': {
-          m: 1,
-          width: 250,
-          height: 160,
-          padding: '10px',
-          backgroundColor: '#ffffff',
-          color: 'black',
-          textAlign: 'center',
-        },
-      }}
-    >
-      <Paper elevation={6}>
+    <Container>
+      <Paper
+        elevation={6}
+        sx={{ backgroundColor: '#231942', width: 'inherit', color: 'whitesmoke' }}
+      >
         <p style={{ fontSize: '15px', fontWeight: 'bold' }}>{card.text}</p>
-        <p style={{ fontSize: '30px', color: '#0a0908' }}>{card.value ? card.value : '-'}</p>
+        <p style={{ fontSize: '30px', color: 'inherit' }}>{card.value ? card.value : '-'}</p>
       </Paper>
-    </Box>
+    </Container>
   )
 }
 
