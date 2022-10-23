@@ -21,9 +21,8 @@ const StationCard = (card: StationInfo) => {
         sx={{
           display: 'flex',
           '& > :not(style)': {
-            m: 1,
             width: '100%',
-            height: 'fit-content',
+            height: '100%',
             // backgroundColor: '#003049',
             color: 'black',
             textAlign: 'start',
